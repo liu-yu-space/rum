@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>RUM 测试页面</title>
+  </head>
+  <body>
+    <h1>RUM 请求与上传测试</h1>
+    <input type="file" id="fileInput" />
+    <button id="uploadBtn">上传</button>
+    <script type="module">
+      import { worker } from "../mocks/browser.js";
+      worker.start();
+      import { UploadManager } from "../dist/index.mjs";
+
+      const uploadManager = new UploadManager();
+
+      document.getElementById("uploadBtn").onclick = async () => {
+        const file = document.getElementById("fileInput").files[0];
+        if (!file) return alert("请选择文件");
+        uploadManager.add(async () => {
+          // 这里模拟上传请求
+          const formData = new FormData();
+          formData.append("file", file);
+          const res = await fetch("/upload", {
+            method: "POST",
+            body: formData,
+          });
+          const data = await res.json();
+          alert(data.message + "，URL：" + data.url);
+        });
+      };
+    </script>
+  </body>
+</html>

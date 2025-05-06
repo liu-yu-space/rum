@@ -1,0 +1,17 @@
+{
+  "name": "rum",
+  "version": "0.1.0",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsup",
+    "lint": "eslint src --ext .ts",
+    "test": "echo 'add your test runner'"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "tsup": "^7.0.0",
+    "eslint": "^9.0.0"
+  }
+}
