@@ -1,0 +1,37 @@
+{
+  "name": "rum-request-upload-manager",
+  "version": "0.1.0",
+  "description": "请求管理与上传管理的TypeScript库，支持未来扩展Socket和SSE。",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest run",
+    "dev": "tsup --watch",
+    "lint": "eslint src --ext .ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/你的github用户名/rum-request-upload-manager.git"
+  },
+  "keywords": [
+    "request",
+    "upload",
+    "typescript",
+    "socket",
+    "sse",
+    "manager"
+  ],
+  "author": "wangyanle",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "eslint": "^8.0.0",
+    "tsup": "^7.0.0",
+    "typescript": "^5.0.0",
+    "vitest": "^1.0.0"
+  }
+}
