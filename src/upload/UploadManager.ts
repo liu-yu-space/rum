@@ -1,9 +1,9 @@
 export class UploadManager {
   // 上传队列
-  private queue: Array<() => Promise<any>> = [];
+  private queue: Array<() => Promise<unknown>> = [];
   private isRunning = false;
 
-  add(uploadFn: () => Promise<any>) {
+  add(uploadFn: () => Promise<unknown>) {
     this.queue.push(uploadFn);
     this.run();
   }
@@ -18,6 +18,7 @@ export class UploadManager {
           await fn();
         } catch (e) {
           // 可扩展错误处理
+          console.error("Upload failed:", e);
         }
       }
     }

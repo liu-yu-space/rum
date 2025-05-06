@@ -1,10 +1,10 @@
 export class RequestManager {
   // 请求队列
-  private queue: Array<() => Promise<any>> = [];
+  private queue: Array<() => Promise<unknown>> = [];
   private isRunning = false;
 
   // 添加请求
-  add(requestFn: () => Promise<any>) {
+  add<T>(requestFn: () => Promise<T>) {
     this.queue.push(requestFn);
     this.run();
   }
@@ -20,6 +20,7 @@ export class RequestManager {
           await fn();
         } catch (e) {
           // 可扩展错误处理
+          console.error("Request failed:", e);
         }
       }
     }

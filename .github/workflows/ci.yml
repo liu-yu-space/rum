@@ -2,9 +2,8 @@ name: CI
 
 on:
   push:
-    branches: [main, master]
-  pull_request:
-    branches: [main, master]
+    tags:
+      - "v.*.*" # 监听所有 tag 推送事件
 
 jobs:
   build:
