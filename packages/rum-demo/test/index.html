@@ -6,29 +6,30 @@
   </head>
   <body>
     <h1>RUM 请求与上传测试</h1>
+    <button id="requestBtn">发送请求</button>
+    <p>点击按钮发送请求，查看控制台输出</p>
     <input type="file" id="fileInput" />
     <button id="uploadBtn">上传</button>
     <script type="module">
       import { worker } from "../mocks/browser.js";
       worker.start();
-      import { UploadManager } from "../dist/index.mjs";
+      import { RequestManager } from "rum/index.ts";
 
-      const uploadManager = new UploadManager();
+      const uploadManager = new RequestManager();
 
-      document.getElementById("uploadBtn").onclick = async () => {
-        const file = document.getElementById("fileInput").files[0];
-        if (!file) return alert("请选择文件");
+      document.getElementById("requestBtn").onclick = async () => {
+        console.log("请求按钮被点击了");
         uploadManager.add(async () => {
-          // 这里模拟上传请求
-          const formData = new FormData();
-          formData.append("file", file);
-          const res = await fetch("/upload", {
-            method: "POST",
-            body: formData,
+          const res = await fetch("/data", {
+            method: "GET",
           });
           const data = await res.json();
-          alert(data.message + "，URL：" + data.url);
+          console.log(data);
         });
+      };
+
+      document.getElementById("uploadBtn").onclick = async () => {
+        console.log("上传按钮被点击了");
       };
     </script>
   </body>

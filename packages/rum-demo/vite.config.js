@@ -4,10 +4,7 @@ import path from "path";
 export default defineConfig({
   resolve: {
     alias: {
-      "rum-request-upload-manager": path.resolve(
-        __dirname,
-        "../rum-request-upload-manager/src"
-      ),
+      rum: path.resolve(__dirname, "../rum/src"),
     },
   },
   server: {

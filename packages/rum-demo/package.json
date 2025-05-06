@@ -11,7 +11,10 @@
     "vite": "^5.0.0",
     "msw": "^2.0.0"
   },
-  "dependencies": {
-    "rum-request-upload-manager": "*"
+  "dependencies": {},
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
   }
 }

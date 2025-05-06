@@ -1,14 +1,19 @@
-// export const worker = setupWorker(...handlers);
-import { setupWorker, rest } from "https://unpkg.com/msw@latest/browser.mjs";
+import { http, HttpResponse } from "msw";
+import { setupWorker } from "msw/browser";
 
-export const worker = setupWorker(
-  rest.post("/upload", async (req, res, ctx) => {
-    return res(
-      ctx.status(200),
-      ctx.json({ message: "上传成功", url: "/mock/file/url" })
-    );
+export const handlers = [
+  http.get("/data", () => {
+    return HttpResponse.json({
+      id: "c7b3d8e0-5e0b-4b0f-8b3a-3b9f4b3d3b3d",
+      firstName: "John",
+      lastName: "Maverick",
+    });
   }),
-  rest.get("/api/data", (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json({ data: [1, 2, 3] }));
-  })
-);
+  http.post("/upload", () => {
+    return HttpResponse.json({
+      upload: "success",
+    });
+  }),
+];
+
+export const worker = setupWorker(...handlers);
