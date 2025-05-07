@@ -11,21 +11,37 @@
     <input type="file" id="fileInput" />
     <button id="uploadBtn">上传</button>
     <script type="module">
+      // 拦截请求和响应
       import { worker } from "../mocks/browser.js";
       worker.start();
-      import { RequestManager } from "rum/index.ts";
 
-      const uploadManager = new RequestManager();
+      // 测试请求
+      import { request } from "rum/index.ts";
 
       document.getElementById("requestBtn").onclick = async () => {
         console.log("请求按钮被点击了");
-        uploadManager.add(async () => {
-          const res = await fetch("/data", {
-            method: "GET",
-          });
-          const data = await res.json();
-          console.log(data);
-        });
+        const reqInterceptors = [
+          (config) => {
+            config.headers = {
+              ...config.headers,
+              Authorization: "Bearer token",
+            };
+            return config;
+          },
+        ];
+
+        const resInterceptors = [
+          async (res) => {
+            if (!res.ok) throw new Error("请求失败");
+            return res;
+          },
+        ];
+
+        request(
+          { url: "/data", method: "GET", timeout: 5000 },
+          reqInterceptors,
+          resInterceptors
+        ).then(console.log);
       };
 
       document.getElementById("uploadBtn").onclick = async () => {
