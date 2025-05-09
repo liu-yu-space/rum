@@ -1,6 +1,6 @@
 # rum-demo
 
-本目录为 @liuyu/rum 库的演示与测试项目，基于浏览器环境，便于开发和功能验证。
+本目录为 @liu-yu/rum 库的演示与测试项目，基于浏览器环境，便于开发和功能验证。
 
 ## 功能说明
 
@@ -31,7 +31,7 @@
 
 ## 相关链接
 
-- [@liuyu/rum 主库说明](../rum/README.md)
+- [@liu-yu/rum 主库说明](../rum/README.md)
 
 ## License
 

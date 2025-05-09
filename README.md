@@ -1,4 +1,4 @@
-# @liuyu/rum
+# @liu-yu/rum
 
 一个基于 TypeScript 的通用请求管理库，支持请求、上传进度、未来可扩展 Socket 和 SSE。
 
@@ -14,13 +14,13 @@
 #### 快速开始
 
 ```bash
-pnpm install @liuyu/rum
+pnpm install @liu-yu/rum
 ```
 
 #### 使用示例
 
 ```ts
-import { request } from "@liuyu/rum";
+import { request } from "@liu-yu/rum";
 
 // 普通请求
 request({ url: "/api/data", method: "GET" }).then(console.log);
