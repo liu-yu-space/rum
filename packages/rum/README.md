@@ -1,11 +1,10 @@
-# rum-request-upload-manager
+# @liu-yu/rum
 
-一个基于 TypeScript 的请求管理与上传管理库，支持未来扩展 Socket 和 SSE。
+一个基于 TypeScript 的通用请求管理库，支持请求、上传进度、Socket 和 SSE 扩展。
 
 ## 特性
 
-- 请求管理
-- 上传管理
+- 通用请求管理（支持上传进度、超时、拦截器）
 - 未来支持 Socket 和 SSE
 - TypeScript 支持
 - 适用于 Node.js 和浏览器
@@ -13,15 +12,27 @@
 ## 快速开始
 
 ```bash
-pnpm install rum-request-upload-manager
+pnpm install @liu-yu/rum
 ```
 
 ## 使用
 
 ```ts
-import { RequestManager, UploadManager } from "rum-request-upload-manager";
+import { request } from "@liu-yu/rum";
 
-// 示例代码
+// 普通请求
+request({ url: "/api/data", method: "GET" }).then(console.log);
+
+// 上传文件并监听进度
+const file = ... // 获取 File 或 Blob
+request({
+  url: "/api/upload",
+  method: "POST",
+  body: file,
+  onProgress: (percent, loaded, total) => {
+    console.log(`上传进度: ${percent}% (${loaded}/${total})`);
+  },
+}).then(console.log);
 ```
 
 ## 开发
