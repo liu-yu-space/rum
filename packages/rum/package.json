@@ -7,7 +7,8 @@
   "scripts": {
     "build": "tsup",
     "lint": "eslint src --ext .ts",
-    "test": "echo 'add your test runner'"
+    "test": "echo 'add your test runner'",
+    "watch": "tsup --watch"
   },
   "devDependencies": {
     "typescript": "^5.0.0",

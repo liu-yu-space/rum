@@ -44,8 +44,53 @@
         ).then(console.log);
       };
 
+      // 测试上传
+      import { upload } from "rum/upload/index.ts";
+
       document.getElementById("uploadBtn").onclick = async () => {
         console.log("上传按钮被点击了");
+        const fileInput = document.getElementById("fileInput");
+        const file = fileInput.files[0];
+        if (!file) {
+          alert("请先选择文件");
+          return;
+        }
+        const reqInterceptors = [
+          (config) => {
+            config.headers = {
+              ...config.headers,
+              Authorization: "Bearer token",
+            };
+            return config;
+          },
+        ];
+        const resInterceptors = [
+          async (res) => {
+            if (!res.ok) throw new Error("上传失败");
+            return res;
+          },
+        ];
+        upload(
+          {
+            url: "/upload", // mock 地址
+            method: "POST",
+            body: file,
+            timeout: 10000,
+            onProgress: (percent, loaded, total) => {
+              console.log(`上传进度: ${percent}% (${loaded}/${total})`);
+            },
+          },
+          reqInterceptors,
+          resInterceptors
+        )
+          .then((res) => {
+            console.log("上传成功", res);
+            alert("上传成功");
+          })
+          .catch((err) => {
+            console.error("上传失败", err);
+            alert("上传失败: " + err.message);
+          });
       };
     </script>
   </body>
