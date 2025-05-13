@@ -39,6 +39,8 @@ request({
 
 - 构建：`pnpm build`
 - 测试：`pnpm test`
+- 更新版本：`pnpm version <patch|minor|major>`
+- 发布：`pnpm publish --access public`
 
 ## License
 
